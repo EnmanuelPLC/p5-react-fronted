@@ -1,0 +1,92 @@
+.usersContainer {
+    margin: 1rem auto;
+    height: 100%;
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-wrapper {
+    width: 500px;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    border-radius: .5rem;
+    box-shadow: 0 0 7px 1px;
+    max-height: 410px;
+    overflow-y: auto;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0;
+    border: none !important;
+    transition: background-color .5s;
+}
+
+.list-group-item svg {
+    margin: 0 .7rem .35rem .7rem;
+}
+
+.item {
+    color: black;
+    list-style: none;
+    cursor: pointer;
+}
+
+.list-group-item:hover {
+    background-color: black;
+    color: rgb(218, 218, 218);
+    cursor: pointer;
+}
+
+.createUserButton {
+    align-self: center;
+}
+
+#createUserModal .form-container {
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#createUserModal .modal-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    padding-bottom: 0;
+    margin: 0;
+    width: 100%;
+    height: 240px;
+}
+
+#createUserModal .modal-header {
+    padding: 1rem;
+    padding-bottom: 0;
+}
+
+.createButton {
+    margin-top: 1rem;
+}
+
+.editUser, .delUser {
+    padding: 0 .2rem;
+    margin: 0 .3rem;
+}
+
+.editUser svg, .delUser svg{
+    pointer-events: none;
+}
+
+.load {
+    margin: 0.3rem 0.7rem 0.35rem 0.7rem;
+}
+
+.noUsers {
+    align-self: center;
+}
