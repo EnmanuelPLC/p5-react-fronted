@@ -39,13 +39,3 @@
 	display: flex;
     border-radius: 1rem !important;
 }
-
-.userName {
-	flex: 1;
-}
-
-.userActions {
-	flex: 1;
-	display: flex;
-	justify-content: end;
-}

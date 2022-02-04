@@ -71,15 +71,13 @@ input, textarea {
 
 .frm1 {
 	height: 40px;
-	display: flex;
-    flex-direction: column;
 }
 
-#uname:focus {
+#u_user:focus {
 	box-shadow: none !important;
 }
 
-#pwd:focus {
+#u_pass:focus {
 	box-shadow: none !important;
 }
 
@@ -89,4 +87,15 @@ input, textarea {
 
 .no-valid {
 	color: red !important;
+}
+
+.ico {
+	display: flex;
+    align-items: center;
+    margin-right: 0.3rem;
+	font-size: 1.5rem;
+}
+
+#myAlert {
+	display: flex;
 }

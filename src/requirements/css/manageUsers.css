@@ -1,5 +1,5 @@
 .usersContainer {
-    margin: 1rem auto;
+    margin: 1rem 0;
     height: 100%;
     padding-right: 1rem;
     display: flex;
@@ -9,7 +9,7 @@
 }
 
 .item-wrapper {
-    width: 500px;
+    width: 80%;
     padding: 0;
     margin: 0;
     background-color: white;
@@ -22,13 +22,16 @@
 .list-group-item {
     display: flex;
     justify-content: space-between;
-    padding-left: 0;
     border: none !important;
-    transition: background-color .5s;
+    transition: background-color .25s;
 }
 
 .list-group-item svg {
-    margin: 0 .7rem .35rem .7rem;
+    margin: .35em;
+}
+
+.list-group-item > div {
+    width: 20%;
 }
 
 .item {
@@ -38,17 +41,19 @@
 }
 
 .list-group-item:hover {
-    background-color: black;
-    color: rgb(218, 218, 218);
-    cursor: pointer;
+    background-color: rgb(211, 211, 211);
 }
 
 .createUserButton {
     align-self: center;
 }
 
+#createUserModal .modal-content {
+    height: 500px;
+}
+
 #createUserModal .form-container {
-    height: 75%;
+    height: 85%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -62,10 +67,33 @@
     padding-bottom: 0;
     margin: 0;
     width: 100%;
-    height: 240px;
+    height: 100%;
 }
 
 #createUserModal .modal-header {
+    padding: 1rem;
+    padding-bottom: 0;
+}
+
+#editUserModal .form-container {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#editUserModal .modal-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    padding-bottom: 0;
+    margin: 0;
+    width: 100%;
+    height: 240px;
+}
+
+#editUserModal .modal-header {
     padding: 1rem;
     padding-bottom: 0;
 }
@@ -76,7 +104,11 @@
 
 .editUser, .delUser {
     padding: 0 .2rem;
-    margin: 0 .3rem;
+    margin-left: .5rem;
+}
+
+.userName > svg {
+    margin-left: 0;
 }
 
 .editUser svg, .delUser svg{
@@ -84,9 +116,53 @@
 }
 
 .load {
-    margin: 0.3rem 0.7rem 0.35rem 0.7rem;
+    margin: .35rem 0;
+}
+
+.load span, .userName span {
+    vertical-align: middle;
 }
 
 .noUsers {
     align-self: center;
+}
+
+.list-head {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid !important;
+}
+
+#teacherPrincipalYaer, #teacherGroupGuide {
+    font-size: large;
+}
+
+.form-switch {
+    color: black;
+    padding-left: 3.5em;
+    margin: 0;
+}
+
+.form-check-label {
+    vertical-align: middle;
+}
+
+.userName {
+	margin-right: 10%;
+}
+
+.userYear {
+	margin-right: 8%;
+}
+
+.userGroup {
+	margin-right: 5%;
+}
+
+.load {
+    min-width: 30%;
+}
+.userActions {
+	display: flex;
+	justify-content: end;
 }

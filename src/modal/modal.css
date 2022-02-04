@@ -1,5 +1,6 @@
 .modal-dialog {
-  margin-top: 85px;
+  margin-top: 65px;
+  max-width: 450px;
 }
 
 .modal-dialog .modal-body {
