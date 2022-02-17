@@ -13,10 +13,12 @@ interface LayoutProps { }
 const Layout: FunctionComponent<LayoutProps> = () => {
   const [user, setUser] = useState(() => {
     const nameSaved = localStorage.getItem("name");
+    const userNameSaved = localStorage.getItem("username");
     const typeSaved = localStorage.getItem("type");
     const tokenSaved = localStorage.getItem("token");
     const initialValue = {
       name: JSON.parse(nameSaved),
+      username: JSON.parse(userNameSaved),
       type: JSON.parse(typeSaved),
       token: JSON.parse(tokenSaved),
     };
@@ -29,6 +31,7 @@ const Layout: FunctionComponent<LayoutProps> = () => {
 
   const onSignOut = () => {
     localStorage.removeItem("name");
+    localStorage.removeItem("username");
     localStorage.removeItem("type");
     localStorage.removeItem("token");
     setUser("");

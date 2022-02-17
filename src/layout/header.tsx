@@ -60,6 +60,7 @@ const Header: FunctionComponent<HeaderProps> = ({ user, onSignOut }) => {
         <div className="nav-wrapper">
           <span className="user">{user.name}</span>
           <button onClick={async (e)=>{
+            if (!window.confirm(`Seguro deseas salir?`)) return;
             await showAlert({type: 'inf', msg: 'Usted ha cerrado sesion, hasta pronto'});
             onSignOut(e);
           }} className="btn btn-outline-danger logOut"><FaPowerOff /></button>

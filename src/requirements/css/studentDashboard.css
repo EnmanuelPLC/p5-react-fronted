@@ -1,0 +1,56 @@
+.studentActionsContainer, .studentGroupLeaderContainer {
+  height:84vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.emptyAct {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  padding: 1rem;
+}
+
+.actWrapper, .meetActWrapper, .activityPlanWrapper {
+  min-width: 75%;
+  max-width: 80%;
+  background-color: white;
+  border-radius: .5rem;
+  padding: .8rem;
+  box-shadow: 0rem 0rem 0.55rem -0.05rem black;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 1rem 2.5rem;
+}
+
+.loading > svg {
+  font-size: xx-large;
+  margin-right: 0.6rem;
+}
+
+.loading > h3 {
+  margin: 0;
+}
+
+#createIntegralityModal .modal-form, #createMeetingActModal .modal-form, #editIntegralityActModal .modal-form, #editMeetingActModal .modal-form, #createActivityPlanModal .modal-form, #editActivityPlanModal .modal-form {
+  width: 100%;
+  padding: 0 1.5rem;
+}
+
+#createIntegralityModal .form-container, #createMeetingActModal .form-container, #editIntegralityActModal .form-container, #editMeetingActModal .form-container, #createActivityPlanModal .form-container, #editActivityPlanModal .form-container {
+  margin-bottom: 1.5rem;
+}
+
+.actHeader {
+  display: flex;
+  justify-content: space-between;
+}
