@@ -1,14 +1,14 @@
-import { FunctionComponent, MouseEventHandler, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { FunctionComponent, MouseEventHandler } from "react";
 import { FaPowerOff } from "react-icons/fa";
 import "./css/header.css";
 
 interface HeaderProps {
   user: {
     name: string,
+    username: string,
     type: string,
     token: string
-  },
+  } | string,
   onSignOut: MouseEventHandler
 }
 
@@ -53,10 +53,10 @@ const Header: FunctionComponent<HeaderProps> = ({ user, onSignOut }) => {
     <div className="logo-wrapper">
       <div className="logo">
         <img className="feu" alt="logo de la feu " src="./img/Logo_FEU.jpg"></img>
-        <Link to={'/'}>Secretaria de la FEU Facultad 2</Link>
+        <a href="http://localhost:3000">Secretaria de la FEU Facultad 2</a>
       </div>
 
-      {(user.name ? (
+      {(typeof user === 'object' && user.name ? (
         <div className="nav-wrapper">
           <span className="user">{user.name}</span>
           <button onClick={async (e)=>{

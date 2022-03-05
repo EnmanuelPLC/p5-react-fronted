@@ -10,23 +10,28 @@ interface DashboardProps {
     username:string,
     type: string;
     token: string;
-  };
+  } | string;
 }
 
 const Dashboard: FunctionComponent<DashboardProps> = ({ user }) => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    if (typeof user.name !== "string") {
+    if (typeof user !== "object") {
       navigate("/");
     }
   }, [navigate, user]);
+  
+  let usr = {username: '', type: ''};
+  if (typeof user === 'object') {
+    usr = user
+  }
 
-  switch (user.type) {
+  switch (usr.type) {
     case "admin":
       return <ManageUsers />;
     case "student":
-      return <StudentDashboard student={user.username}/>;
+      return <StudentDashboard student={usr.username}/>;
     case "teacher":
       return <TeacherDashboard />;
     default:

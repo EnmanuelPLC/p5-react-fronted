@@ -1,7 +1,4 @@
-
-const sleep = async (ms: number) => {
-    return await new Promise(resolve => setTimeout(resolve, ms));
-}
+import sleep from './sleep';
 
 const showAlert = async (ops: { type: string, msg: string }) => {
   let typeAlert = "", alertObj = document.getElementById("myAlert"); let ico = alertObj?.getElementsByClassName("ico")[0], time = 1;

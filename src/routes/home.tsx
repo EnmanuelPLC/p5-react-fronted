@@ -1,13 +1,15 @@
-//@ts-nocheck
-import { FunctionComponent, useEffect, useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { FunctionComponent, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import showAlert from "../utils/alerts";
 import './css/home.css';
 
 
 interface HomeProps {
-
+  onSignIn: any,
+  user: {
+    name: string
+  } | string
 }
 
 const Home: FunctionComponent<HomeProps> = ({ onSignIn, user }) => {
@@ -15,7 +17,7 @@ const Home: FunctionComponent<HomeProps> = ({ onSignIn, user }) => {
   const { register, formState: { errors }, handleSubmit } = useForm();
 
   useEffect(() => {
-    if (user.name) {
+    if (typeof user === 'object' && user.name) {
       navigate('/dashboard');
     }
   }, [navigate, user]);

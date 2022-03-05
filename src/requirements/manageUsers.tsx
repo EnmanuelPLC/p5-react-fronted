@@ -1,4 +1,4 @@
-import { FunctionComponent, useCallback, useEffect, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Modal from "../modal/modal";
 import showAlert from "../utils/alerts";
@@ -7,6 +7,7 @@ import { FaUser } from "react-icons/fa";
 import { RiUserSettingsFill } from "react-icons/ri";
 import { TiUserDelete } from "react-icons/ti";
 import { TiUserAdd } from "react-icons/ti";
+import hideModal from '../utils/hideModal';
 
 interface ManageUsersProps {
 
@@ -146,12 +147,10 @@ const ManageUsers: FunctionComponent<ManageUsersProps> = () => {
 				</ul>
 				<button type="button" className="btn btn-primary createUserButton" data-bs-toggle="modal" data-bs-target="#createUserModal"><TiUserAdd /> Crear usuario</button>
 			</div>
+
 			<Modal title="Crear Usuario" id="createUserModal">
 					<form key={1} className="modal-form" onSubmit={
 						handleSubmit((dat, e) => {
-							setTimeout(() => {
-								reset(); setUserType('');
-							}, 500);
 							fetch('http://localhost:5000/createUser', {
 								method: 'POST',
 								body: JSON.stringify(dat), // data can be `string` or {object}!
@@ -159,8 +158,10 @@ const ManageUsers: FunctionComponent<ManageUsersProps> = () => {
 							}).then((res) => {
 								res.json().then(async (e) => {
 									if (e.createUser) {
-										await showAlert({type: 'ok', msg: e.msg});
+										await hideModal('createUserModal');
 										setlastUserAction(lastUserAction+1);
+										await showAlert({type: 'ok', msg: e.msg});
+										reset(); setUserType('');
 									} else await showAlert({ type: 'war', msg: e.msg });
 								}).catch(async (e) => {
 									console.log(e);
@@ -312,9 +313,6 @@ const ManageUsers: FunctionComponent<ManageUsersProps> = () => {
 			<Modal title={"Editando a "+ userEdit.fullname?.split(' ')[0]} id="editUserModal">
 				<form key={2} className="modal-form" id="edit-form" onSubmit={
 					handleSubmit2((dat, e) => {
-						setTimeout(() => {
-							reset2();
-						}, 500);
 						fetch('http://localhost:5000/editUser', {
 							method: 'PUT',
 							body: JSON.stringify({username: userEdit.username, editedUser: dat}),
@@ -322,8 +320,10 @@ const ManageUsers: FunctionComponent<ManageUsersProps> = () => {
 						}).then((res) => {
 							res.json().then(async (dat) => {
 								if (dat.editUser) {
-									await showAlert({ type: 'ok', msg: dat.msg});
+									await hideModal('editUserModal');
 									setlastUserAction(lastUserAction + 1);
+									await showAlert({ type: 'ok', msg: dat.msg});
+									reset2();
 								} else showAlert({ type: 'war', msg: dat.msg});
 							}).catch(async (e) => {
 								console.log(e);

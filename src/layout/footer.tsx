@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import { FunctionComponent } from "react";
-import { FaMailBulk, FaTelegram, FaVoicemail } from 'react-icons/fa';
+import { FaTelegram } from 'react-icons/fa';
 import { FaFacebook } from 'react-icons/fa';
 import { FaTwitter } from 'react-icons/fa';
 import { FaGithub } from 'react-icons/fa';

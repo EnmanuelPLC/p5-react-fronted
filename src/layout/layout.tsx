@@ -1,5 +1,4 @@
-// @ts-nocheck
-import React, { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./header";
 import Home from "../routes/home";
@@ -16,16 +15,17 @@ const Layout: FunctionComponent<LayoutProps> = () => {
     const userNameSaved = localStorage.getItem("username");
     const typeSaved = localStorage.getItem("type");
     const tokenSaved = localStorage.getItem("token");
-    const initialValue = {
-      name: JSON.parse(nameSaved),
-      username: JSON.parse(userNameSaved),
-      type: JSON.parse(typeSaved),
-      token: JSON.parse(tokenSaved),
-    };
-    return initialValue || "";
+    if (nameSaved && userNameSaved && typeSaved && tokenSaved) {
+      return {
+        name: JSON.parse(nameSaved),
+        username: JSON.parse(userNameSaved),
+        type: JSON.parse(typeSaved),
+        token: JSON.parse(tokenSaved),
+      }
+    } else return ''
   });
 
-  const onSignIn = (data) => {
+  const onSignIn = (data: any) => {
     setUser(data);
   };
 
