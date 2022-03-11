@@ -28,7 +28,6 @@ const Home: FunctionComponent<HomeProps> = ({ onSignIn, user }) => {
       <form id='formulario' onSubmit={
         handleSubmit(async (dat, e) => {
           if (e) e.preventDefault();
-          console.log(dat);
           await fetch(`http://localhost:5000/login?user=${dat.username}&pass=${dat.password}`).then(async (res) => {
             await res.json().then(async (e) => {
               if (e.login) {

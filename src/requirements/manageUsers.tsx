@@ -71,7 +71,7 @@ const ManageUsers: FunctionComponent<ManageUsersProps> = () => {
 			res.json().then(async (e) => {
 				if (e.delUser) {
 					await showAlert({type: 'ok', msg: e.msg});
-					// window.location.reload();
+					setlastUserAction(lastUserAction+1);
 				} else await showAlert({ type: 'war', msg: e.msg });
 			}).catch(async (e) => {
 				console.log(e);
@@ -175,16 +175,18 @@ const ManageUsers: FunctionComponent<ManageUsersProps> = () => {
 						<div className='form-container'>
 							<div className="form-group">
 								<input className='form-control' id='u_user' type="text" placeholder="Usuario" autoComplete="username"
-									{...register("username", { required: true, minLength: 5, maxLength: 15 })} />
+								{...register("username", { required: true, minLength: 5, maxLength: 15, pattern: /^[a-z]+$/})} />
 								{errors.username?.type === "required" && <p className='no-valid'>Debes escribir un usuario</p>}
+								{errors.username?.type === "pattern" && <p className='no-valid'>El usuario debe ser en minusculas y solo letras</p>}
 								{errors.username?.type === "minLength" && <p className='no-valid'>El nombre debe tener al menos 5 caracteres</p>}
 								{errors.username?.type === "maxLength" && <p className='no-valid'>El nombre es muy grande</p>}
 							</div>
 
 							<div className="form-group">
 								<input className='form-control' id='u_name' type="text" placeholder="Nombre completo" autoComplete="username"
-									{...register("userFullName", { required: true, minLength: 15, maxLength: 30 })} />
+								{...register("userFullName", { required: true, minLength: 15, maxLength: 30, pattern: /^[a-z A-Z]+$/ })} />
 								{errors.userFullName?.type === "required" && <p className='no-valid'>Debes completar el campo</p>}
+								{errors.userFullName?.type === "pattern" && <p className='no-valid'>El nombre solo debe contener letras</p>}
 								{errors.userFullName?.type === "minLength" && <p className='no-valid'>Escriba el nombre y los 2 apellidos</p>}
 								{errors.userFullName?.type === "maxLength" && <p className='no-valid'>El nombre completo es muy grande</p>}
 							</div>

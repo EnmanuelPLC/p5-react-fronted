@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import Modal from "../modal/modal";
 import showAlert from "../utils/alerts";
 import './css/studentDashboard.css';
-import { FaRegEdit } from "react-icons/fa";
 import hideModal from '../utils/hideModal';
+import { FaRegEdit } from "react-icons/fa";
+import { TiDocumentDelete } from "react-icons/ti";
 
 interface StudentDashboardProps {
   student: string;
@@ -36,7 +37,7 @@ const StudentDashboard: FunctionComponent<StudentDashboardProps> = ({student}) =
   useEffect(() => {
     fetch(`http://localhost:5000/getUser?user=${student}`).then(e => e.json().then((e) => {
       setUser(e[0]);
-      if (e[0].isGroupLeader) {
+      if (e[0].isGroupLeader || e[0].isViceGroupLeader) {
         fetch(`http://localhost:5000/getMeetingAct?user=${student}`).then(e => e.json().then((e) => {
           if (e.length > 0) setMeetingsActs(e[0]);
           else setMeetingsActs({ group: -1, description: '', date: '', username: '', year: -1, modifyDate: '' });
@@ -61,6 +62,26 @@ const StudentDashboard: FunctionComponent<StudentDashboardProps> = ({student}) =
   }
   const editActivityPlan = (e: any) => {
     console.log(e.target.value);
+  }
+  const deleteMeetingActModal = (e: any) => {
+    if (!window.confirm(`Confirme la eliminacion del acta de reunion`)) return;
+    fetch('http://localhost:5000/delMeetingAct', {
+      method: 'POST',
+      body: JSON.stringify({ user: e.target.value }),
+      headers: { 'Content-Type': 'application/json' }
+    }).then((res) => {
+      res.json().then(async (e) => {
+        if (e.deleted) {
+          await showAlert({ type: 'ok', msg: e.msg });
+        } else await showAlert({ type: 'war', msg: e.msg });
+      }).catch(async (e) => {
+        console.log(e);
+        await showAlert({ type: 'ok', msg: 'Error en el servidor al eliminar acta de reunion' });
+      })
+    }).catch(async (e) => {
+      console.log(e);
+      await showAlert({ type: 'ok', msg: 'Error al conectar con el servidor' });
+    });
   }
 
   return (
@@ -366,6 +387,7 @@ const StudentDashboard: FunctionComponent<StudentDashboardProps> = ({student}) =
                     <div className="actHeader">
                       <h2>Acta de Reunion de brigada</h2>
                       <button className="btn btn-outline-success" type="button" value={meetingsActs.username} onClick={editMeetingAct} data-bs-toggle="modal" data-bs-target="#editMeetingActModal"><FaRegEdit /></button>
+                      <button className="btn btn-outline-danger" type="button" value={meetingsActs.username} onClick={deleteMeetingActModal} ><TiDocumentDelete /></button>
                     </div>
 
                     <div className="actContent">
@@ -412,6 +434,61 @@ const StudentDashboard: FunctionComponent<StudentDashboardProps> = ({student}) =
           </div>
         </>
       ) : ('')}
+
+      {user.isViceGroupLeader ? (
+        <>
+          <div className="studentViceGroupLeaderContainer">
+            <div className="meetActWrapper">
+              {user.username ?
+                meetingsActs.group > 0 ? (
+                  <div className="meetingAct">
+                    <div className="actHeader">
+                      <h2>Acta de Reunion de brigada</h2>
+                    </div>
+
+                    <div className="actContent">
+                      <div className="userFullname"><strong>Creada por:</strong> {user.fullname}</div>
+                      <div className="date"><strong>Fecha de creacion:</strong> {meetingsActs.date}</div>
+                      <div className="date"><strong>Fecha de Modificacion:</strong> {meetingsActs.modifyDate}</div>
+                      <div className="info"><strong>Descripcion:</strong> {meetingsActs.description}</div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="emptyAct">
+                    <h3>No hay actas de Reunion</h3>
+                    <button type="button" className="btn btn-primary createUserButton" data-bs-toggle="modal" data-bs-target="#createMeetingActModal">Crear Acta</button>
+                  </div>
+                )
+                : ''}
+            </div>
+          </div>
+          <div className="studentViceGroupLeaderContainer">
+            <div className="activityPlanWrapper">
+              {user.username ?
+                activityPlan.group > 0 ? (
+                  <div className="activityPlan">
+                    <div className="actHeader">
+                      <h2>Plan de Actividades</h2>
+                    </div>
+
+                    <div className="actContent">
+                      <div className="userFullname"><strong>Creado por:</strong> {user.fullname}</div>
+                      <div className="name"><strong>Nombre:</strong> {activityPlan.name}</div>
+                      <div className="date"><strong>Fecha de creacion:</strong> {activityPlan.date}</div>
+                      <div className="date"><strong>Fecha de Modificacion:</strong> {activityPlan.modifyDate}</div>
+                      <div className="info"><strong>Descripcion:</strong> {activityPlan.description}</div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="emptyAct">
+                    <h3>No hay plan de actividades</h3>
+                    <button type="button" className="btn btn-primary createUserButton" data-bs-toggle="modal" data-bs-target="#createActivityPlanModal">Crear Plan</button>
+                  </div>
+                ) : ''}
+            </div>
+          </div>
+        </>
+      ) : ''}
     </>
   )
 }

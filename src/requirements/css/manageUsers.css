@@ -161,7 +161,8 @@
 .load {
     min-width: 30%;
 }
+
 .userActions {
 	display: flex;
-	justify-content: end;
+	justify-content: flex-end;
 }

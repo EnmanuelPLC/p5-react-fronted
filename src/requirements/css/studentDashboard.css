@@ -1,4 +1,6 @@
-.studentActionsContainer, .studentGroupLeaderContainer {
+.studentActionsContainer,
+.studentGroupLeaderContainer,
+.studentViceGroupLeaderContainer {
   height:84vh;
   display: flex;
   flex-direction: column;

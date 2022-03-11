@@ -33,7 +33,7 @@ const Dashboard: FunctionComponent<DashboardProps> = ({ user }) => {
     case "student":
       return <StudentDashboard student={usr.username}/>;
     case "teacher":
-      return <TeacherDashboard />;
+      return <TeacherDashboard teacher={usr.username}/>;
     default:
       return <h1 style={{ color: "white" }}>Cargando ...</h1>;
   }

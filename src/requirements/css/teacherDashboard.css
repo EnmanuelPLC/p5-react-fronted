@@ -1,0 +1,42 @@
+.teacherIntegraliesContainer,
+.teacherMeetingsContainer {
+  height: 84vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.teacherIntegraliesContainer .userYear {
+  margin-left: 7%;
+  margin-right: unset;
+}
+
+.teacherIntegraliesContainer .userGroup {
+  margin-left: 11%;
+  margin-right: unset;
+}
+
+.teacherIntegraliesTittle,
+.teacherMeetingsTittle {
+  color: white;
+  margin: 1rem;
+}
+
+.teacherMeetingsContainer .list-group-item>div {
+  width: unset;
+}
+
+.teacherMeetingsContainer .userName {
+  margin-right: unset;
+}
+
+#showStudentIntegrality .modal-form,
+#showMeetingAct .modal-form {
+  width: 100%;
+  padding: 0 1.5rem;
+}
+
+#showStudentIntegrality .form-container,
+#showMeetingAct .form-container {
+  margin-bottom: 1.5rem;
+}
