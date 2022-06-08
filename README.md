@@ -1,6 +1,6 @@
 # Sistema de Gestión para la Secretaria de la Facultad 2
 
-Clonar el proyecto
+Clonar el proyecto ### git clone https://github.com/EnmanuelPLC/p5-react-fronted.git ###
 
 ### `npm i --save` instalar las dependencias
 
